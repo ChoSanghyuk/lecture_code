@@ -3,6 +3,8 @@ package org.example;
 import org.example.entity.Category;
 import org.example.entity.Item;
 import org.example.entity.Member;
+import org.example.entity.item.Album;
+import org.example.entity.item.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,41 +19,17 @@ public class Main {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
-        Item item1 = new Item();
-        item1.setName("1");
-        item1.setPrice(100);
-        item1.setStockQuantity(5);
-
-        Item item2 = new Item();
-        item2.setName("2");
-        item2.setPrice(100);
-        item2.setStockQuantity(5);
-
-        Category category1 = new Category();
-        Category category2 = new Category();
-        Category category3 = new Category();
-
-//        item1.getCategories().add(category1);
-//        item1.getCategories().add(category2);
-//        item1.getCategories().add(category3);
-//        item2.getCategories().add(category1);
-//        item2.getCategories().add(category2);
-
-        category1.getItems().add(item1);
-        category1.getItems().add(item2);
-        category2.getItems().add(item1);
-
-        category3.getItems().add(item1);
-        category3.getItems().add(item1);
-
-        em.persist(item1);
-        em.persist(item2);
-        em.persist(category1);
-        em.persist(category2);
-        em.persist(category3);
+        Album album = new Album();
+        album.setArtist("me");
 
 
+        Movie movie = new Movie();
+        movie.setActor("me");
+        movie.setDirector("me");
 
+
+        em.persist(album);
+        em.persist(movie);
 
         transaction.commit();
         em.close();

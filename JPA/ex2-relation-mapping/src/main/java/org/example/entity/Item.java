@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import lombok.Data;
+import org.example.entity.commonFields.SystemFields;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +13,9 @@ import java.util.List;
         sequenceName = "ITEM_SEQ", //매핑할 데이터베이스 시퀀스 이름
         initialValue = 1, allocationSize = 1)
 @Data
-public class Item {
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="ITEM_TYPE")
+public abstract class Item extends SystemFields {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_SEQ_GENERATOR")
     private Long id;
